@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} {{article.title}} {% endblock title %}
+{% block content%}
+<div class="article-entry">
+    <h2 class="text-danger">{{object.title}}</h2>
+    <p>{{ object.author }} | {{ object.date }}</p>
+    <!--    <p><img src="{{ object.image }}" alt="Smiley face" width="250" height="250">-->
+
+    </p>
+    <p>{{ object.body }}</p>
+</div>
+{% if user.is_authenticated and article.author == request.user %}
+<p><a href="{% url 'article_edit' article.pk %}"
+      class="btn btn-primary">Tahrilash</a>
+    <a href="{% url 'article_delete' article.pk %}"
+       class="btn btn-success">O'chirish</a>
+</p>
+{% else %}
+<br>
+{% endif %}
+{% endblock content %}

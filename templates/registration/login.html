@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Saytga kirish{% endblock title %}
+
+{% block content %}
+<h2 style="color:red">Log In</h2>
+<form action="" method="post">{% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success ml-2" type="submit"> Log In </button>
+    <a href="/users/password_reset" class="btn btn-danger" type="button">Parolni unutdim</a>
+</form>
+{% endblock content %}

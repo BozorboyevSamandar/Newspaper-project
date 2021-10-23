@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% block title %}Maqolani o'chirish {% endblock title %}
+{% block content %}
+<h1>Maqolani o'chirish</h1>
+<form action="" method="post">{% csrf_token%}
+    <p>Siz rostdan ham "{{article.title}}" shu maqolani o'chirmoqchimisiz?</p>
+    <button class="btn btn-danger ml-2" type="submit">
+        Tasdiqlayman
+    </button>
+</form>
+{% endblock content%}

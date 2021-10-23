@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} Maqolalar {% endblock title %}
+
+{% block content %}
+{% for article in object_list %}
+<div class="card mb-3">
+    <div class="card-header">
+        <a href="{% url 'article_detail' article.pk %}">
+        <span class="font-weight-bold">{{article.title}}</span>
+        </a>
+        <span class="text-muted">{{article.author}}</span>
+        {{article.date}}
+    </div>
+
+    <div class="card-body">
+        {{article.body}}
+    </div>
+    <div class="card-footer">
+        {% for comment in article.comments.all %}
+        <p>
+            <span class="font-weight-bold">{{ comment.author }} &middot;</span>
+            {{ comment }}
+        </p>
+        {% endfor %}
+    </div>
+
+    <div class="card-footer text-center text-muted">
+        {% if user.is_authenticated and article.author == request.user %}
+        <a href="{% url 'article_edit' article.pk %}" class="btn btn-success">Edit</a>
+        <a href="{% url 'article_delete' article.pk %}" class="btn btn-danger">Delete</a>
+        {% else %}
+        <br>
+        {% endif %}
+    </div>
+</div>
+
+{% endfor%}
+{% endblock content %}
